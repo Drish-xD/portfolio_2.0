@@ -21,6 +21,7 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "@types": ["types/types"],
       "@components": ["components"],
       "@styles/*": ["assets/styles/*"],
       "@fonts": ["assets/fonts/font"],
