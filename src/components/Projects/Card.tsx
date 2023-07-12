@@ -1,22 +1,18 @@
+'use client';
+
+import { useCardsAnime } from '@myhooks';
+import { ProjectsProps } from '@types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ForwardRefRenderFunction, forwardRef } from 'react';
 
-interface ProjectProps {
-  name: string;
-  image: string;
-  github: string;
-  live: string;
-  tags: Array<string>;
-}
-
-const Card: ForwardRefRenderFunction<HTMLDivElement, ProjectProps> = ({ ...projects }, ref) => {
-  const { name, tags, image, github } = projects;
+const Card = ({ project }: { project: ProjectsProps }) => {
+  const projectsRef = useCardsAnime();
+  const { name, tags, img, id, slug } = project;
 
   return (
-    <article ref={ref}>
+    <article ref={(ref: HTMLDivElement) => (projectsRef.current[id] = ref)}>
       <Image
-        src={`https://www.drishxd.dev/images/${image}`}
+        src={img}
         alt={`Project ${name} Thumbnail`}
         title={`Project ${name} Thumbnail`}
         fill
@@ -41,11 +37,9 @@ const Card: ForwardRefRenderFunction<HTMLDivElement, ProjectProps> = ({ ...proje
           ))}
         </div>
       </hgroup>
-      <Link href={github} target="_blank" prefetch={false}>
-        ↗
-      </Link>
+      <Link href={`/project/${slug}`}>↗</Link>
     </article>
   );
 };
 
-export default forwardRef(Card);
+export default Card;

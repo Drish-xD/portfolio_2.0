@@ -37,7 +37,15 @@
   }
 }
 
-@include device('tablet') {
+@include device(laptop) {
+  #about {
+    .about-container {
+      width: 90%;
+    }
+  }
+}
+
+@include device(tablet) {
   #about {
     .about-container {
       width: 100%;

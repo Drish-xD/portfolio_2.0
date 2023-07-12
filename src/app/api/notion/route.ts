@@ -23,11 +23,12 @@ export async function GET() {
   // @ts-ignore
   const rows: Properties[] = query.results.map((res) => res.properties);
 
-  const structuredRows = rows.map(({ img, name, slug, tags }) => ({
+  const structuredRows = rows.map(({ img, name, slug, tags }, index) => ({
     slug: slug.rich_text[0].text.content,
     img: img.files[0].file.url,
     name: name.title[0].text.content,
-    tags: tags.multi_select.map((tag) => tag.name)
+    tags: tags.multi_select.map((tag) => tag.name),
+    id: index
   }));
 
   return NextResponse.json(structuredRows);

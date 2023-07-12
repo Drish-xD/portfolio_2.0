@@ -22,6 +22,7 @@
     "baseUrl": "src",
     "paths": {
       "@types": ["types/types"],
+      "@api/*": ["app/api/*"],
       "@components": ["components"],
       "@styles/*": ["assets/styles/*"],
       "@fonts": ["assets/fonts/font"],
